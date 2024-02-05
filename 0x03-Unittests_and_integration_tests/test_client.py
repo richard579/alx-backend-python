@@ -50,10 +50,10 @@ class TestGithubOrgClient(unittest.TestCase):
                 "https://api.github.com/users/google/repos",
             )
 
-     @patch("client.get_json")
-     def test_public_repos(self, mock_get_json: MagicMock) -> None:
-         """Tests the `public_repos` method."""
-         test_payload = {
+    @patch("client.get_json")
+    def test_public_repos(self, mock_get_json: MagicMock) -> None:
+        """Tests the `public_repos` method."""
+        test_payload = {
             'repos_url': "https://api.github.com/users/google/repos",
             'repos': [
                 {
@@ -93,7 +93,7 @@ class TestGithubOrgClient(unittest.TestCase):
         mock_get_json.return_value = test_payload["repos"]
         with patch(
                 "client.GithubOrgClient._public_repos_url",
-                new_callable=PropertyMock
+                new_callable=PropertyMock,
                 ) as mock_public_repos_url:
             mock_public_repos_url.return_value = test_payload["repos_url"]
             self.assertEqual(
